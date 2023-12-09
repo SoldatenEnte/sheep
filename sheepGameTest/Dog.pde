@@ -1,0 +1,35 @@
+class Dog {
+  PVector pos = new PVector(mouseX, mouseY);      //Positionsvektor
+  PVector v = new PVector();                      //Bewegungsvektor
+  float speed = 5;                                //Geschwindigkeit des Hundes
+  float radius = 10;                              //Größe des Hundes
+
+
+  Dog() {
+    fill(#6F540B);
+    stroke(#5D3403);
+    strokeWeight(5);
+    ellipse(pos.x, pos.y, 2*radius, 2*radius);
+  }
+  //Gibt Position des Hundes aus
+  float xposition () {
+    return pos.x;
+  }
+
+  float yposition () {
+    return pos.y;
+  }
+  void move() {
+    //berechnet Richtung des Bewegungsvektors und normalisiert
+    v.set ((mouseX - pos.x),(mouseY - pos.y));  
+    v.normalize();
+    v.mult(speed);
+    //verrechent Position und Bewegung
+    pos.add(v);
+  }
+  void draw() {
+    fill(#6F540B);
+    stroke(#5D3403);
+    ellipse(pos.x, pos.y, 2*radius, 2*radius);
+  }
+}
