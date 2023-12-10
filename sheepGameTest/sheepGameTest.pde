@@ -5,11 +5,13 @@ float timer = levelTimer;
 int sheepCount = 10;
 Dog theDog;
 Sheep sheep1;
+Wolf wolf1;
 
 void setup(){
   size(1280,720);
   theDog = new Dog();
   sheep1 = new Sheep();
+  wolf1 = new Wolf();
 }
 
 void draw(){
@@ -29,16 +31,23 @@ void draw(){
   else if (gameState == GAME){
     timer -= 1/frameRate;
     background(50, 200, 50);
+    
     //schreibt den Countdown hin
     textSize(30);
     fill(0);
     text (int(timer), 20, 40);
+    
     //Der Hund
     theDog.move();
     theDog.draw();
+    
     //die Schafe
     sheep1.move();
     sheep1.draw();
+    
+    //der Wolf
+    wolf1.move();
+    wolf1.draw();
     //beendet das Game, wenn der Timer läuft
     if (timer<=0){
       gameState = END;
