@@ -22,6 +22,7 @@ class Sheep {
     //berechnet Richtung und normalisiert
     v.set (-(theDog.xposition() - pos.x),-(theDog.yposition() - pos.y));
     v.normalize();
+    v.mult(0.5);
     //verrechent Position und Bewegung
     pos.add(v);
   }

@@ -5,11 +5,13 @@ float timer = levelTimer;
 int sheepCount = 10;
 Dog theDog;
 Sheep sheep1;
+ArrayList <Sheep> sheep;
 Wolf wolf1;
 
 void setup(){
   size(1280,720);
   theDog = new Dog();
+  sheep = new ArrayList<Sheep>();
   sheep1 = new Sheep();
   wolf1 = new Wolf();
 }
@@ -44,6 +46,11 @@ void draw(){
     //die Schafe
     sheep1.move();
     sheep1.draw();
+    for(int i = sheepCount; i >= 0; i--){
+      Sheep aSheep = sheep.get(i);
+      aSheep.move();
+      aSheep.draw();
+    }
     
     //der Wolf
     wolf1.move();
@@ -61,6 +68,10 @@ void draw(){
 void keyPressed(){
   if (gameState == MENU && keyCode == ENTER){
     timer = levelTimer;
+    //spawnt Schafe
+    for (int i = sheepCount; i>=0; i--) {
+      sheep.add(new Sheep());
+    }
     gameState = GAME;
   }
 }

@@ -14,7 +14,7 @@ class Wolf {
     //Richtung und Bewegung
     v.set ((sheep1.xposition() - pos.x),(sheep1.yposition() - pos.y));
     v.normalize();
-    v.mult(2);
+    v.mult(0.6);
     pos.add(v);
   }
   
