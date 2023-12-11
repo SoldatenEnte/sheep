@@ -21,7 +21,7 @@ class Sheep {
 
   void move() {
     //berechnet Richtung und normalisiert
-    if (dist(theDog.xposition(), theDog.yposition(), xposition(), yposition())<=200) {
+    if (dist(theDog.xposition(), theDog.yposition(), xposition(), yposition())<= DogTriggerUsed) {
       dogChase = true;
       v.set (-(theDog.xposition() - pos.x), -(theDog.yposition() - pos.y));
       v.normalize();

@@ -1,5 +1,9 @@
 int MENU = 0, GAME = 1, END = 2;
 int gameState = MENU;
+
+int hundTrigger1 = 100, hundTrigger2 = 150, hundTrigger3 = 200, hundTrigger4 = 250, hundTrigger5 = 300, hundTrigger6 = 350, hundTrigger7 = 400;
+int DogTriggerUsed = hundTrigger1; //Hund trigger Reichweite für Schaf
+
 float timer;
 int sheepCount;
 Dog theDog;
@@ -26,6 +30,7 @@ void draw() {
     text("Sheeps of Doom", width/8 * 3, height/2);
     textSize(20);
     text("Press 'Enter' to start", width/2, height/2 + height/20);
+    text ("Press 1-7 to change the Dogs trigger Range for the Sheep: " + DogTriggerUsed, width/4, height/5*4+100);
   }
 
 
@@ -77,6 +82,25 @@ void draw() {
 void keyPressed() {
   if (gameState == MENU && keyCode == ENTER) {
     gameState = GAME;
+
+    //Trigger änderung durch tastenDruck im Menu (noch nicht funktional)
+    if (keyPressed) {
+      if (gameState == MENU && key == '1') {
+        DogTriggerUsed = hundTrigger1;
+      } else if (gameState == MENU && key == '2') {
+        DogTriggerUsed = hundTrigger2;
+      } else if (gameState == MENU && key == '3') {
+        DogTriggerUsed = hundTrigger3;
+      } else if (gameState == MENU && key == '4') {
+        DogTriggerUsed = hundTrigger4;
+      } else if (gameState == MENU && key == '5') {
+        DogTriggerUsed = hundTrigger5;
+      } else if (gameState == MENU && key == '6') {
+        DogTriggerUsed = hundTrigger6;
+      } else if (gameState == MENU && key == '7') {
+        DogTriggerUsed = hundTrigger7;
+      }
+    }
   } else if (gameState == END && keyCode == ENTER) {
     reset(100, 10);
     gameState = MENU;
