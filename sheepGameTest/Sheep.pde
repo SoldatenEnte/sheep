@@ -20,12 +20,13 @@ class Sheep {
   
   void move() {
     //berechnet Richtung und normalisiert
+   if (dist(theDog.xposition(),theDog.yposition(),xposition(),yposition())<=150) {
     v.set (-(theDog.xposition() - pos.x),-(theDog.yposition() - pos.y));
     v.normalize();
-    v.mult(0.5);
+    v.mult(1);
     //verrechent Position und Bewegung
     pos.add(v);
-  }
+  }}
   void draw() {
     fill(255);
     stroke(50);
