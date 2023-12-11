@@ -19,6 +19,14 @@ class Sheep {
     return (pos.y);
   }
   
+  /*void despawn() {
+    for (int i = wolfCount; i >= 0; i--) {
+      Wolf aWolf = wolf.get(i);
+      if (dist(aWolf.pos.x, aWolf.pos.y, pos.x, pos.y) < aWolf.radius){
+        sheep.remove(
+      }
+    }
+  }*/
 
   void move() {
     //berechnet Richtung und normalisiert
@@ -39,7 +47,7 @@ class Sheep {
       dogChase = false;
     }
     //Collision
-    for (int i = sheepCount; i > 0; i--) {
+    for (int i = sheepCount; i >= 0; i--) {
       Sheep aSheep = sheep.get(i);
       if (dist(aSheep.xposition(), aSheep.yposition(), pos.x, pos.y) < radius*2) {
         antiCol.set(-(aSheep.xposition() - pos.x), -(aSheep.yposition() - pos.y));

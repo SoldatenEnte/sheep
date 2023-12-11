@@ -1,3 +1,8 @@
+/*Die Klasse für den Hund/Spielercharakter
+*/
+
+
+
 class Dog {
   PVector pos = new PVector(0, 0);                //Positionsvektor
   PVector v = new PVector();                      //Bewegungsvektor
