@@ -39,7 +39,7 @@ class Sheep {
       dogChase = false;
     }
     //Collision
-    for (int i = sheepCount; i >= 0; i--) {
+    for (int i = sheepCount; i > 0; i--) {
       Sheep aSheep = sheep.get(i);
       if (dist(aSheep.xposition(), aSheep.yposition(), pos.x, pos.y) < radius*2) {
         antiCol.set(-(aSheep.xposition() - pos.x), -(aSheep.yposition() - pos.y));

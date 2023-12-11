@@ -83,7 +83,7 @@ void draw() {
 void keyPressed() {
   if (gameState == MENU) {
     if (keyCode == ENTER) {
-      set(100, 10);                                                      //SET!!!
+      set(30, 10);                                                      //SET!!!
       gameState = GAME;
     }
 
