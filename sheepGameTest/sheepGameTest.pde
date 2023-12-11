@@ -2,7 +2,7 @@ int MENU = 0, GAME = 1, END = 2;
 int gameState = MENU;
 
 int hundTrigger1 = 100, hundTrigger2 = 150, hundTrigger3 = 200, hundTrigger4 = 250, hundTrigger5 = 300, hundTrigger6 = 350, hundTrigger7 = 400;
-int DogTriggerUsed = hundTrigger1; //Hund trigger Reichweite für Schaf
+int DogTriggerUsed = hundTrigger2; //Hund trigger Reichweite für Schaf
 
 float timer;
 int sheepCount;
@@ -17,7 +17,7 @@ void setup() {
   sheep = new ArrayList<Sheep>();
   sheep1 = new Sheep();
   wolf1 = new Wolf();
-  set(100, 10);
+  
 }
 
 void draw() {
@@ -80,29 +80,31 @@ void draw() {
 
 
 void keyPressed() {
-  if (gameState == MENU && keyCode == ENTER) {
-    gameState = GAME;
+  if (gameState == MENU) {
+    if (keyCode == ENTER) {
+      set(100, 10);                                                      //SET!!!
+      gameState = GAME;
+    }
 
-    //Trigger änderung durch tastenDruck im Menu (noch nicht funktional)
-    if (keyPressed) {
-      if (gameState == MENU && key == '1') {
-        DogTriggerUsed = hundTrigger1;
-      } else if (gameState == MENU && key == '2') {
-        DogTriggerUsed = hundTrigger2;
-      } else if (gameState == MENU && key == '3') {
-        DogTriggerUsed = hundTrigger3;
-      } else if (gameState == MENU && key == '4') {
-        DogTriggerUsed = hundTrigger4;
-      } else if (gameState == MENU && key == '5') {
-        DogTriggerUsed = hundTrigger5;
-      } else if (gameState == MENU && key == '6') {
-        DogTriggerUsed = hundTrigger6;
-      } else if (gameState == MENU && key == '7') {
-        DogTriggerUsed = hundTrigger7;
-      }
+    //Trigger änderung durch tastenDruck im Menu
+
+    if (key == '1') {
+      DogTriggerUsed = hundTrigger1;
+    } else if (key == '2') {
+      DogTriggerUsed = hundTrigger2;
+    } else if (key == '3') {
+      DogTriggerUsed = hundTrigger3;
+    } else if (key == '4') {
+      DogTriggerUsed = hundTrigger4;
+    } else if (key == '5') {
+      DogTriggerUsed = hundTrigger5;
+    } else if (key == '6') {
+      DogTriggerUsed = hundTrigger6;
+    } else if (key == '7') {
+      DogTriggerUsed = hundTrigger7;
     }
   } else if (gameState == END && keyCode == ENTER) {
-    reset(100, 10);
+    reset();
     gameState = MENU;
   }
 }

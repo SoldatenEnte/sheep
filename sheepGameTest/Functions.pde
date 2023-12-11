@@ -8,11 +8,10 @@ void set(float a, int b) {
 }
 
 
-void reset(float a, int b) {
+void reset() {
   for (int i = sheepCount; i>=0; i--) {
     sheep.remove(i);
   }
   wolf1.reset();
   theDog.reset();
-  set(a, b);
 }

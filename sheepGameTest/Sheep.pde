@@ -18,15 +18,21 @@ class Sheep {
   float yposition () {
     return (pos.y);
   }
+  
+  void death(){
+  }
 
   void move() {
     //berechnet Richtung und normalisiert
+    //Bewegung, wenn in Reichweite des Hundes
     if (dist(theDog.xposition(), theDog.yposition(), xposition(), yposition())<= DogTriggerUsed) {
       dogChase = true;
       v.set (-(theDog.xposition() - pos.x), -(theDog.yposition() - pos.y));
       v.normalize();
       v.mult(1);
-    } else {
+    } 
+    //Zufällige Bewegung, wenn der Hund nicht in Reichweite ist
+    else {
       if (dogChase) {
         v.set (random(-10, 10), random(-10, 10));
         v.normalize();
@@ -34,21 +40,21 @@ class Sheep {
       }
       dogChase = false;
     }
+    //Collision
     for (int i = sheepCount; i >= 0; i--) {
       Sheep aSheep = sheep.get(i);
-      if(dist(aSheep.xposition(), aSheep.yposition(), pos.x, pos.y) < radius*2){
+      if (dist(aSheep.xposition(), aSheep.yposition(), pos.x, pos.y) < radius*2) {
         antiCol.set(-(aSheep.xposition() - pos.x), -(aSheep.yposition() - pos.y));
-        //antiCol.normalize();
-        //antiCol.mult(2);
-      }else {
+        antiCol.normalize();
+        antiCol.mult(radius*2 - dist(aSheep.xposition(), aSheep.yposition(), pos.x, pos.y));
+      } else {
         antiCol.set(0, 0);
       }
+      pos.add(antiCol);
     }
-    //verrechent Position und Bewegung
-    //v.add(antiCol);
     pos.add(v);
-    pos.add(antiCol);
   }
+
   void draw() {
     fill(255);
     stroke(50);
