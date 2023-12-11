@@ -1,5 +1,5 @@
 class Dog {
-  PVector pos = new PVector(mouseX, mouseY);      //Positionsvektor
+  PVector pos = new PVector(0, 0);                //Positionsvektor
   PVector v = new PVector();                      //Bewegungsvektor
   float speed = 5;                                //Geschwindigkeit des Hundes
   float radius = 10;                              //Größe des Hundes
@@ -19,6 +19,10 @@ class Dog {
   float yposition () {
     return pos.y;
   }
+  void reset() {
+    pos.set (0, 0);
+  }
+  
   void move() {
     //berechnet Richtung des Bewegungsvektors und normalisiert
     v.set ((mouseX - pos.x),(mouseY - pos.y));  

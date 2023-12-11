@@ -1,8 +1,7 @@
 int MENU = 0, GAME = 1, END = 2;
 int gameState = MENU;
-float levelTimer = 100;
-float timer = levelTimer;
-int sheepCount = 10;
+float timer;
+int sheepCount;
 Dog theDog;
 Sheep sheep1;
 ArrayList <Sheep> sheep;
@@ -14,6 +13,7 @@ void setup() {
   sheep = new ArrayList<Sheep>();
   sheep1 = new Sheep();
   wolf1 = new Wolf();
+  set(100, 10);
 }
 
 void draw() {
@@ -76,13 +76,9 @@ void draw() {
 
 void keyPressed() {
   if (gameState == MENU && keyCode == ENTER) {
-    timer = levelTimer;
-    //spawnt Schafe
-    for (int i = sheepCount; i>=0; i--) {
-      sheep.add(new Sheep());
-    }
     gameState = GAME;
   } else if (gameState == END && keyCode == ENTER) {
+    reset(100, 10);
     gameState = MENU;
   }
 }

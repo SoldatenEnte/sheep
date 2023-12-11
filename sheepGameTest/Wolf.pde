@@ -10,6 +10,10 @@ class Wolf {
     ellipse(pos.x, pos.y, radius*2, radius*2);
   }
   
+  void reset() {
+    pos.set(width, height);
+  }
+  
   void move() {
     //Richtung und Bewegung
     v.set ((sheep1.xposition() - pos.x),(sheep1.yposition() - pos.y));
