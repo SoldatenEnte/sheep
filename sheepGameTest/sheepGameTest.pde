@@ -49,6 +49,7 @@ void draw() {
     theDog.draw();
 
     //die Schafe
+    kill();
     sheep1.move();
     sheep1.draw();
     for (int i = sheepCount; i >= 0; i--) {

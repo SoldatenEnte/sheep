@@ -19,8 +19,6 @@ class Sheep {
     return (pos.y);
   }
   
-  void death(){
-  }
 
   void move() {
     //berechnet Richtung und normalisiert
