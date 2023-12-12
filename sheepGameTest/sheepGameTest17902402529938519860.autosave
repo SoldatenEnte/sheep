@@ -1,8 +1,7 @@
-int MENU = 0, GAME = 1, END = 2, GAMEOVER = 3, LEVEL = 4, CONTROLS = 5; 
+int MENU = 0, GAME = 1, END = 2, GAMEOVER = 3;
 int gameState = MENU;
 int selected = 0;
 boolean barked = false;
-float barkCoolDown = 2;
 
 int hundTrigger1 = 100, hundTrigger2 = 150, hundTrigger3 = 200, hundTrigger4 = 250, hundTrigger5 = 300, hundTrigger6 = 350, hundTrigger7 = 400;
 int DogTriggerUsed = hundTrigger2; //Hund trigger Reichweite für Schaf
@@ -26,7 +25,7 @@ PImage sheepimg;
 void setup() {
   size(1280, 720);
 
-  Level1 = new Level(0, 10, 100);
+  Level1 = new Level(0, 10, 10);
   Level2 = new Level(1, 10, 20);
   theDog = new Dog();
   sheep = new ArrayList<Sheep>();
@@ -71,11 +70,8 @@ void keyPressed() {
     if (selected == 0) Level1.reset();
     if (selected == 1) Level2.reset();
     gameState = MENU;
-  } else if (gameState == GAMEOVER && keyCode == ENTER) {
-    gameState = END;
   }
 }
-
 
 void mouseClicked() {
   if (gameState == MENU) {
@@ -87,16 +83,13 @@ void mouseClicked() {
     gameState = GAME;
   }
   if (gameState == GAME) {
-    if (barkCoolDown <= 0) {
-      barked = true;
-      barkCoolDown = 4;
-      theDog.bark ();
-    }
+    barked = true;
+    theDog.bark ();
   }
 }
 
 void draw() {
-  println(barkCoolDown);
+  println(barked);
   // Menü
   if (gameState == MENU) {
     background(50, 150, 50);
@@ -134,9 +127,6 @@ void draw() {
     if (timer<=0) {
       gameState = END;
     }
-    if (sheepCount <= 0) {
-      gameState = GAMEOVER;
-    }
   } else if (gameState == END) {
     //END Bildschirm
 
@@ -154,11 +144,6 @@ void draw() {
     background (0);
     textSize (120);
     fill (255, 0, 0);
-    text ("GAME OVER", width/2, height/3);
-    textSize (40);
-    fill (#E3E3E3);
-    textAlign (CENTER);
-    text ("You've lost all the Farmers Sheep. Shame on you!", width/2, height/3*2);
-    text ("Press ENTER for Score and Menu.", width/2, height/4*3);
+  
   }
 }
