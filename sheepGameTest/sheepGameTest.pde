@@ -10,6 +10,7 @@ int DogTriggerUsed = hundTrigger2; //Hund trigger Reichweite für Schaf
 float timer;
 int sheepCount;
 int wolfCount;
+float score;
 
 Level Level1;
 Level Level2;
@@ -96,7 +97,7 @@ void mouseClicked() {
 }
 
 void draw() {
-  println(barkCoolDown);
+  println(score);
   // Menü
   if (gameState == MENU) {
     background(50, 150, 50);
@@ -111,6 +112,9 @@ void draw() {
     text("Press 'Enter' to start", width/2, height/2 + height/20);
     text ("Press 1-7 to change the Dogs trigger Range for the Sheep: " + DogTriggerUsed, width/4, height/5*4+100);
   }
+
+
+
 
 
   //Das Spiel
@@ -130,6 +134,8 @@ void draw() {
     textSize(30);
     fill(0);
     text (int(timer), 20, 40);
+    //Scoreberechnung
+    score = score + sheepCount/frameRate;
     //beendet das Game, wenn der Timer läuft
     if (timer<=0) {
       gameState = END;
@@ -138,15 +144,17 @@ void draw() {
       gameState = GAMEOVER;
     }
   } else if (gameState == END) {
+    
+    
+    
+    
+    
     //END Bildschirm
-
-    //Score Berechnung
-    int Score = sheepCount*100 ;
+    
     background (0);
     textSize (120);
     fill(255);
-    text ("Score: "+ Score, width/4, height/2);
-
+    text ("Score: "+ int(score), width/4, height/2);
     textSize (80);
     text ("Press ENTER for Menu", width/5, height/4);
   } else if (gameState == GAMEOVER) {
