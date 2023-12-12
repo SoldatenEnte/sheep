@@ -227,9 +227,10 @@ void draw() {
 
   //CONTROLS Screen
   else if (gameState == CONTROLS) {
-    background (0);
-    fill (255);
-    text ("Press 1-7 to change the Dogs triggerrange for the Sheep: " + DogTriggerUsed, width/4, height/5*4+100);
+    background(50, 150, 50);
+    textSize(height/20);
+    fill (#DBD2AC);
+    text ("Press 1-7 to change the Dogs triggerrange for the Sheep: " + DogTriggerUsed, width/10, height/10 * 8,9);
   }
 
 
