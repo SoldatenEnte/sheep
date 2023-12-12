@@ -29,7 +29,7 @@ class Wolf {
     float maxDist = 5000;
 
     //reaktion Wolf auf bellen
-    if ((dist(theDog.xposition(), theDog.yposition(), pos.x, pos.y) <= 100) && barked == true ) {
+    if (dist(theDog.xposition(), theDog.yposition(), pos.x, pos.y) <= 100 && barked == true ) {
 
 
       v.set (theDog.xposition() + pos.x, theDog.yposition() + pos.y);

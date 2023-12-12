@@ -1,6 +1,7 @@
 int MENU = 0, GAME = 1, END = 2, GAMEOVER = 3;
 int gameState = MENU;
 int selected = 0;
+int time = 5;
 boolean barked = false;
 
 int hundTrigger1 = 100, hundTrigger2 = 150, hundTrigger3 = 200, hundTrigger4 = 250, hundTrigger5 = 300, hundTrigger6 = 350, hundTrigger7 = 400;
@@ -85,11 +86,11 @@ void mouseClicked() {
   if (gameState == GAME) {
     barked = true;
     theDog.bark ();
+    
   }
 }
 
 void draw() {
-  println(barked);
   // Menü
   if (gameState == MENU) {
     background(50, 150, 50);
@@ -140,10 +141,9 @@ void draw() {
     textSize (80);
     text ("Press ENTER for Menu", width/5, height/4);
   } else if (gameState == GAMEOVER) {
-
+   
     background (0);
     textSize (120);
-    fill (255, 0, 0);
-    text ("GAME OVER", width/4, height/3);
-  }
+    fill (255,0,0);
+    text
 }
