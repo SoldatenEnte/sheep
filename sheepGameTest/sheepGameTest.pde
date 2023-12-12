@@ -70,21 +70,34 @@ void keyPressed() {
   //Levelbildschirm
   else if (gameState == LEVEL) {
     if (keyCode == ENTER) {
-      if (levelSelect == 0) {
+      if (selected == 0) {
         Level1.set();
-      } else if (levelSelect == 1) {
+      } else if (selected == 1) {
         Level2.set();
+      } else if (selected == 2) {
+        Level3.set();
+      } else if (selected == 3) {
+        Level4.set();
+      } else if (selected == 4) {
+        Level5.set();
+      } else if (selected == 5) {
+        Level6.set();
+      } else if (selected == 6) {
+        Level7.set();
+      } else if (selected == 7) {
+        Level8.set();
       }
-      gameState = CONTROLS;
+      levelSelect = selected;
+      gameState = GAME;
     }
-
-    // Controls Bildschirm
-  } else if (gameState == CONTROLS) {
+  }
+  // Controls Bildschirm
+  else if (gameState == CONTROLS) {
     if (keyCode == ENTER || keyCode == BACKSPACE) {
       gameState = MENU;
     }
     //Trigger ändern durch Tastendruck im Menu
-    if (key == '1') {
+    else if (key == '1') {
       DogTriggerUsed = hundTrigger1;
     } else if (key == '2') {
       DogTriggerUsed = hundTrigger2;
