@@ -33,6 +33,9 @@ class Wolf {
         maxDist = dist(aSheep.xposition (), aSheep.yposition (), pos.x, pos.y);
         sheepPos.set(aSheep.xposition (), aSheep.yposition ());
       }
+      //reaktion Wolf auf bellen
+      if ((dist(TheDog.xposition(), TheDog.yposition(),pos.x, pos.y) < 100) && barked = true) {
+        
     }
     v.set (sheepPos.x - pos.x, sheepPos.y - pos.y);
     v.normalize();

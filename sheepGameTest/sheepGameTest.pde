@@ -48,7 +48,7 @@ void keyPressed() {
       gameState = GAME;
     }
 
-    //Trigger änderung durch tastenDruck im Menu
+    //Trigger ändern durch Tastendruck im Menu
 
     if (key == '1') {
       DogTriggerUsed = hundTrigger1;

@@ -1,7 +1,8 @@
 /*Die Klasse für den Hund/Spielercharakter
-*/
+ */
 
-
+boolean barked = false;
+int time = 5;
 
 class Dog {
   PVector pos = new PVector(0, 0);                //Positionsvektor
@@ -27,10 +28,10 @@ class Dog {
   void reset() {
     pos.set (0, 0);
   }
-  
+
   void move() {
     //berechnet Richtung des Bewegungsvektors und normalisiert
-    v.set ((mouseX - pos.x),(mouseY - pos.y));  
+    v.set ((mouseX - pos.x), (mouseY - pos.y));
     v.normalize();
     v.mult(speed);
     //verrechent Position und Bewegung
@@ -45,5 +46,22 @@ class Dog {
     imageMode(CENTER);
     image(dogimg, 0, 0, 3*radius, 3*radius);
     popMatrix();
+  }
+
+// HUndbellen Darstellung und Timer
+  void mouseClicked() {
+    if (barked == false) {
+      barked = true;
+
+      textSize (50);
+      fill (255, 0, 0);
+      text ("!", pos.x+10, pos.y+10);
+
+      time -= 1/frameRate;
+      if (time <= 0) {
+        barked = false;
+        time = 5;
+      }
+    }
   }
 }
