@@ -2,7 +2,7 @@ class Wolf {
   PVector pos = new PVector();                 //Positionsvektor
   PVector v   = new PVector();                 //Bewegungsvektor
 
-  float radius = 10;                           //Größe des Wolfs
+  float radius = 20;                           //Größe des Wolfs
 
   Wolf (float x, float y) {
     pos.set(x, y);
@@ -36,14 +36,18 @@ class Wolf {
     }
     v.set (sheepPos.x - pos.x, sheepPos.y - pos.y);
     v.normalize();
-    v.mult(0.6);
+    v.mult(1);
     pos.add(v);
   }
 
   void draw() {
-    fill (100);
-    stroke (150);
-    strokeWeight(5);
-    ellipse(pos.x, pos.y, radius*2, radius*2);
+    //imageMode(CENTER);
+    //image(wolfimg, pos.x, pos.y, 3*radius, 3*radius);
+    pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(v.heading() + 45);
+    imageMode(CENTER);
+    image(wolfimg, 0, 0, 3*radius, 3*radius);
+    popMatrix();
   }
 }

@@ -15,13 +15,26 @@ Dog theDog;
 ArrayList <Sheep> sheep;
 ArrayList <Wolf> wolf;
 
+PImage ground;
+PImage trees;
+PImage dogimg;
+PImage wolfimg;
+PImage sheepimg;
+
 void setup() {
   size(1280, 720);
-  Level1 = new Level(1, 10, 10);
-  Level2 = new Level(2, 10, 20);
+  
+  Level1 = new Level(0, 10, 10);
+  Level2 = new Level(1, 10, 20);
   theDog = new Dog();
   sheep = new ArrayList<Sheep>();
   wolf = new ArrayList<Wolf>();
+  
+  ground = loadImage("Ground.jpg");
+  trees = loadImage("trees.png");
+  dogimg = loadImage("dog.png");
+  wolfimg = loadImage("wolf.png");
+  sheepimg = loadImage("sheep.png");
 }
 
 void keyPressed() {
@@ -92,10 +105,15 @@ void draw() {
   else if (gameState == GAME) {
     timer -= 1/frameRate;
     background(50, 200, 50);
+    imageMode(CORNER);
+    image (ground, 0, 0, width, height);
     
     if(selected == 0) Level1.draw();
     if (selected == 1) Level2.draw();
     
+    rotate(0);
+    imageMode(CORNER);
+    image (trees, 0, 0, width, height);
     //schreibt den Countdown hin
     textSize(30);
     fill(0);

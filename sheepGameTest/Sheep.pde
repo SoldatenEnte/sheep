@@ -2,7 +2,7 @@ class Sheep {
   PVector pos = new PVector(random(400, 800), random(160, 560));    //Positionsvektor
   PVector v = new PVector();                                        //Bewegungsvektor
   PVector antiCol = new PVector();
-  float radius = 15;                                                //Größe des Schafes
+  float radius = 30;                                                //Größe des Schafes
   boolean dogChase = true;
 
   Sheep() {
@@ -18,15 +18,6 @@ class Sheep {
   float yposition () {
     return (pos.y);
   }
-  
-  /*void despawn() {
-    for (int i = wolfCount; i >= 0; i--) {
-      Wolf aWolf = wolf.get(i);
-      if (dist(aWolf.pos.x, aWolf.pos.y, pos.x, pos.y) < aWolf.radius){
-        sheep.remove(
-      }
-    }
-  }*/
 
   void move() {
     //berechnet Richtung und normalisiert
@@ -35,14 +26,14 @@ class Sheep {
       dogChase = true;
       v.set (-(theDog.xposition() - pos.x), -(theDog.yposition() - pos.y));
       v.normalize();
-      v.mult(1);
+      v.mult(2);
     } 
     //Zufällige Bewegung, wenn der Hund nicht in Reichweite ist
     else {
       if (dogChase) {
         v.set (random(-10, 10), random(-10, 10));
         v.normalize();
-        v.mult(0.2);
+        v.mult(0.3);
       }
       dogChase = false;
     }
@@ -62,9 +53,15 @@ class Sheep {
   }
 
   void draw() {
-    fill(255);
-    stroke(50);
-    strokeWeight(5);
-    ellipse(pos.x, pos.y, 2*radius, 2*radius);
+    //fill(255);
+    //stroke(50);
+    //strokeWeight(5);
+    //ellipse(pos.x, pos.y, 2*radius, 2*radius);
+    pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(v.heading() + 45);
+    imageMode(CENTER);
+    image(sheepimg, 0, 0, 2*radius, 2*radius);
+    popMatrix();
   }
 }

@@ -7,7 +7,7 @@ class Dog {
   PVector pos = new PVector(0, 0);                //Positionsvektor
   PVector v = new PVector();                      //Bewegungsvektor
   float speed = 5;                                //Geschwindigkeit des Hundes
-  float radius = 10;                              //Größe des Hundes
+  float radius = 20;                              //Größe des Hundes
 
 
   Dog() {
@@ -37,8 +37,13 @@ class Dog {
     pos.add(v);
   }
   void draw() {
-    fill(#6F540B);
-    stroke(#5D3403);
-    ellipse(pos.x, pos.y, 2*radius, 2*radius);
+    //imageMode(CENTER);
+    //image(dogimg, pos.x, pos.y, 3*radius, 3*radius);
+    pushMatrix();
+    translate(pos.x, pos.y);
+    rotate(v.heading() + 45);
+    imageMode(CENTER);
+    image(dogimg, 0, 0, 3*radius, 3*radius);
+    popMatrix();
   }
 }
