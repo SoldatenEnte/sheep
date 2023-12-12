@@ -66,8 +66,7 @@ void keyPressed() {
     if (keyCode == ENTER) {
       gameState = LEVEL;
     }
-  }
-  else if(gameState == CREDITS){
+  } else if (gameState == CREDITS) {
     if (keyCode == BACKSPACE || keyCode == ENTER) {
       gameState = MENU;
     }
@@ -99,43 +98,43 @@ void keyPressed() {
     } else if (keyCode == BACKSPACE) {
       gameState = MENU;
     }
-
-    // Controls Bildschirm
-    else if (gameState == CONTROLS) {
-      if (keyCode == ENTER || keyCode == BACKSPACE) {
-        gameState = MENU;
-      }
-      //Trigger ändern durch Tastendruck im Menu
-      else if (key == '1') {
-        DogTriggerUsed = hundTrigger1;
-      } else if (key == '2') {
-        DogTriggerUsed = hundTrigger2;
-      } else if (key == '3') {
-        DogTriggerUsed = hundTrigger3;
-      } else if (key == '4') {
-        DogTriggerUsed = hundTrigger4;
-      } else if (key == '5') {
-        DogTriggerUsed = hundTrigger5;
-      } else if (key == '6') {
-        DogTriggerUsed = hundTrigger6;
-      } else if (key == '7') {
-        DogTriggerUsed = hundTrigger7;
-      }
-    } else if (gameState == END && keyCode == ENTER) {
-      if (levelSelect == 0) Level1.reset();
-      if (levelSelect == 1) Level2.reset();
-      if (levelSelect == 2) Level3.reset();
-      if (levelSelect == 3) Level4.reset();
-      if (levelSelect == 4) Level5.reset();
-      if (levelSelect == 5) Level6.reset();
-      if (levelSelect == 6) Level7.reset();
-      if (levelSelect == 7) Level8.reset();
+  }
+  // Controls Bildschirm
+  else if (gameState == CONTROLS) {
+    if (keyCode == ENTER || keyCode == BACKSPACE) {
       gameState = MENU;
-    } else if (gameState == GAMEOVER && keyCode == ENTER) {
-      gameState = END;
     }
+    //Trigger ändern durch Tastendruck im Menu
+    else if (key == '1') {
+      DogTriggerUsed = hundTrigger1;
+    } else if (key == '2') {
+      DogTriggerUsed = hundTrigger2;
+    } else if (key == '3') {
+      DogTriggerUsed = hundTrigger3;
+    } else if (key == '4') {
+      DogTriggerUsed = hundTrigger4;
+    } else if (key == '5') {
+      DogTriggerUsed = hundTrigger5;
+    } else if (key == '6') {
+      DogTriggerUsed = hundTrigger6;
+    } else if (key == '7') {
+      DogTriggerUsed = hundTrigger7;
+    }
+  } else if (gameState == END && keyCode == ENTER) {
+    if (levelSelect == 0) Level1.reset();
+    if (levelSelect == 1) Level2.reset();
+    if (levelSelect == 2) Level3.reset();
+    if (levelSelect == 3) Level4.reset();
+    if (levelSelect == 4) Level5.reset();
+    if (levelSelect == 5) Level6.reset();
+    if (levelSelect == 6) Level7.reset();
+    if (levelSelect == 7) Level8.reset();
+    gameState = MENU;
+  } else if (gameState == GAMEOVER && keyCode == ENTER) {
+    gameState = END;
   }
 }
+
 
 void mousePressed() {
 
