@@ -1,5 +1,5 @@
-int MENU = 0, GAME = 1, END = 2, GAMEOVER = 3, LEVEL = 4, CONTROLS = 5; 
-int gameState = MENU;
+int MENU = 0, GAME = 1, END = 2, GAMEOVER = 3, LEVEL = 4, CONTROLS = 5, INTRO = 6;
+int gameState = INTRO;
 int selected = 0;
 boolean barked = false;
 float barkCoolDown = 2;
@@ -41,18 +41,15 @@ void setup() {
 }
 
 void keyPressed() {
-  if (gameState == MENU) {
+  if (gameState == INTRO) {
     if (keyCode == ENTER) {
-      if (selected == 0) {
-        Level1.set();
-      } else if (selected == 1) {
-        Level2.set();
-      }
-      gameState = GAME;
+      gameState = MENU;
     }
-
+  } else if (gameState == MENU) {
+    if (keyCode == ENTER) {
+      gameState = LEVEL;
+    }
     //Trigger ändern durch Tastendruck im Menu
-
     if (key == '1') {
       DogTriggerUsed = hundTrigger1;
     } else if (key == '2') {
@@ -68,13 +65,32 @@ void keyPressed() {
     } else if (key == '7') {
       DogTriggerUsed = hundTrigger7;
     }
-  } else if (gameState == END && keyCode == ENTER) {
-    if (selected == 0) Level1.reset();
-    if (selected == 1) Level2.reset();
-    gameState = MENU;
-  } else if (gameState == GAMEOVER && keyCode == ENTER) {
-    gameState = END;
   }
+  //Levelbildschirm
+  else if (gameState == LEVEL) {
+    if (keyCode == ENTER) {
+      if (selected == 0) {
+        Level1.set();
+      } else if (selected == 1) {
+        Level2.set();
+      }
+      gameState = CONTROLS;
+    }
+    
+    // Controls Bildschirm
+  } else if (gameState == CONTROLS) {
+    if (keyCode == ENTER) {
+      gameState = GAME;
+    }
+  }
+
+ else if (gameState == END && keyCode == ENTER) {
+  if (selected == 0) Level1.reset();
+  if (selected == 1) Level2.reset();
+  gameState = MENU;
+} else if (gameState == GAMEOVER && keyCode == ENTER) {
+  gameState = END;
+}
 }
 
 
@@ -98,12 +114,14 @@ void mouseClicked() {
 
 void draw() {
   println(score);
-  // Menü
-  if (gameState == MENU) {
-    background(50, 150, 50);
-    button (width/10 * 0.1, height/10 * 9, width/10, height/10 * 0.9, "Level 1", 0);
-    button (width/10 + width/10 * 0.1, height/10 * 9, width/10, height/10 * 0.9, "Level 2", 1);
 
+  //intro
+  if (gameState == INTRO) {
+    background (0);
+  }
+  // Menü
+  else if (gameState == MENU) {
+    background(50, 150, 50);
     fill(0);
     textSize(50);
     text("Sheeps of Doom", width/2, height/2);
@@ -113,8 +131,17 @@ void draw() {
     text ("Press 1-7 to change the Dogs trigger Range for the Sheep: " + DogTriggerUsed, width/4, height/5*4+100);
   }
 
+  //Levelauswahl
+  else if ( gameState == LEVEL) {
+    background(50, 150, 50);
+    button (width/10 * 0.1, height/10 * 9, width/10, height/10 * 0.9, "Level 1", 0);
+    button (width/10 + width/10 * 0.1, height/10 * 9, width/10, height/10 * 0.9, "Level 2", 1);
+  }
 
-
+  //CONTROLS Screen
+  else if (gameState == CONTROLS) {
+    background (0);
+  }
 
 
   //Das Spiel
@@ -144,13 +171,13 @@ void draw() {
       gameState = GAMEOVER;
     }
   } else if (gameState == END) {
-    
-    
-    
-    
-    
+
+
+
+
+
     //END Bildschirm
-    
+
     background (0);
     textSize (120);
     fill(255);
@@ -160,7 +187,7 @@ void draw() {
   } else if (gameState == GAMEOVER) {
 
     background (0);
-    
+
     textAlign (CENTER);
     textSize (120);
     fill (255, 0, 0);
@@ -169,6 +196,6 @@ void draw() {
     fill (#E3E3E3);
     text ("You've lost all the Farmers Sheep. Shame on you!", width/2, height/3*2);
     text ("Press ENTER for Score and Menu.", width/2, height/4*3);
-    textAlign (LEFT);  
-}
+    textAlign (LEFT);
+  }
 }
