@@ -17,10 +17,8 @@ class Level {
     //set() setzt die timer und die Anzahl von Wölfen und Schafen auf die in Level() angegebenen Werte
 
     timer = levelTimer;
-    sheepCount = sheepStart;
-    wolfCount = wolfStart;
     //spawnt Wölfe
-    for (int i = wolfCount; i>=0; i--) {
+    for (int i = wolfStart; i>=0; i--) {
       wolf.add(new Wolf(random(0, width), height));
     }
     //spawnt Schafe
@@ -28,17 +26,13 @@ class Level {
       sheep.add(new Sheep());
     }
     levelSelect = selected;
-    gameState = GAME;
+    loadState(GameState.GAME);
   }
 
   void reset() {
     //reset() leert nach dem Ende des Levels die Listen für Schafe und Wölfe und setzt den Spielercharakter zurück
-    for (int i = sheepCount; i>=0; i--) {
-      sheep.remove(i);
-    }
-    for (int i = wolfCount; i>=0; i--) {
-      wolf.remove(i);
-    }
+    sheep.clear();
+    wolf.clear();
     theDog.reset();
     score = 0;
   }
@@ -51,14 +45,14 @@ class Level {
 
     //die Schafe
     kill();
-    for (int i = sheepCount; i >= 0; i--) {
+    for (int i = sheep.size()-1; i >= 0; i--) {
       Sheep aSheep = sheep.get(i);
       aSheep.move();
       aSheep.draw();
     }
 
     //der Wolf
-    for (int i = wolfCount; i >= 0; i--) {
+    for (int i = wolf.size()-1; i >= 0; i--) {
       Wolf aWolf = wolf.get(i);
       aWolf.move();
       aWolf.draw();

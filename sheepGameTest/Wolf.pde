@@ -2,16 +2,13 @@ class Wolf {
   PVector pos = new PVector();                 //Positionsvektor
   PVector v   = new PVector();                 //Bewegungsvektor
 
-  float radius = 20;                           //Größe des Wolfs
+  float radius = 20*vw;                           //Größe des Wolfs
   boolean wolfEating = false;
   float eatCoolDown = 1;
+  float speed = 1*vw;
 
   Wolf (float x, float y) {
     pos.set(x, y);
-    fill (100);
-    stroke (150);
-    strokeWeight(5);
-    ellipse(pos.x, pos.y, radius*2, radius*2);
   }
 
   //Gibt Position des Wolfes aus
@@ -28,32 +25,32 @@ class Wolf {
 
   void move() {
     PVector sheepPos = new PVector();
-    float maxDist = 5000;
+    float maxDist = 5000*vw;
     boolean dogChase = false;
 
     if (wolfEating == false) {
 
       if ( barked == true ) {
-         if (dist(theDog.xposition(), theDog.yposition(), pos.x, pos.y) <= 100) {
+         if (dist(theDog.pos.x, theDog.pos.y, pos.x, pos.y) <= 100*vw) {
         dogChase = true;
       }
         if (dogChase == true) {
-          v.set (-(theDog.xposition() - pos.x), -(theDog.yposition() - pos.y));
+          v.set (-(theDog.pos.x - pos.x), -(theDog.pos.y - pos.y));
           v.normalize();
           v.mult(1.5);
         }
         dogChase = false;
       } else {
-        for (int i = sheepCount; i >= 0; i--) {
+        for (int i = sheep.size()-1; i >= 0; i--) {
           Sheep aSheep = sheep.get(i);
-          if (dist(aSheep.xposition (), aSheep.yposition (), pos.x, pos.y) < maxDist) {
-            maxDist = dist(aSheep.xposition (), aSheep.yposition (), pos.x, pos.y);
-            sheepPos.set(aSheep.xposition (), aSheep.yposition ());
+          if (dist(aSheep.pos.x, aSheep.pos.y, pos.x, pos.y) < maxDist) {
+            maxDist = dist(aSheep.pos.x, aSheep.pos.y, pos.x, pos.y);
+            sheepPos.set(aSheep.pos.x, aSheep.pos.y);
           }
         }
         v.set (sheepPos.x - pos.x, sheepPos.y - pos.y);
         v.normalize();
-        v.mult(1);
+        v.mult(speed);
       }
 
       pos.add(v);
