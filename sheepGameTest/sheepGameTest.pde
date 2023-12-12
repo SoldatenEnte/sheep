@@ -119,7 +119,8 @@ void draw() {
   if (gameState == INTRO) {
     background (0);
     fill (255);
-    text ("Intro", width/2,height/2);   
+    textSize (30);
+    text ("Press ENTER to skip...", width/10*7,height/8*7);   
 }
   // Menü
   else if (gameState == MENU) {
