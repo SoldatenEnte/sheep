@@ -7,6 +7,7 @@ void kill() {
       if (dist(aWolf.xposition(), aWolf.yposition (), aSheep.xposition (), aSheep.yposition ()) < aWolf.radius) {
         sheep.remove(aSheep);
         sheepCount --;
+        aWolf.wolfEating = true;
       }
       if (aSheep.xposition() < 0 - aSheep.radius || aSheep.xposition() > width + aSheep.radius || aSheep.yposition() < 0 - aSheep.radius || aSheep.yposition() > height + aSheep.radius ) {
         sheep.remove(aSheep);
