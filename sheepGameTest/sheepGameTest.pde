@@ -3,6 +3,8 @@ int gameState = INTRO;
 int levelSelect = 0;
 int selected = 0;
 float clickCoolDown = 1;
+float musicCoolDown = 0;
+float musicCoolDown1 = 0;
 
 boolean barked = false;
 float barkCoolDown = 2;
@@ -34,6 +36,12 @@ PImage dogimg;
 PImage wolfimg;
 PImage sheepimg;
 
+import processing.sound.*;
+SoundFile wolfBite;
+SoundFile backgroundMusic;
+SoundFile sheepBleat;
+SoundFile dogBark;
+
 void setup() {
   size(1280, 720);
 
@@ -55,7 +63,13 @@ void setup() {
   dogimg = loadImage("dog.png");
   wolfimg = loadImage("wolf.png");
   sheepimg = loadImage("sheep.png");
+
+  wolfBite = new SoundFile(this, "crunchy-bite.mp3");
+  backgroundMusic = new SoundFile(this, "Carefree.mp3");
+  sheepBleat = new SoundFile(this, "sheepbleat.wav");
+  dogBark = new SoundFile(this, "dog bark.mp3");
 }
+
 
 void keyPressed() {
   if (gameState == INTRO) {
@@ -188,6 +202,13 @@ void draw() {
   }
   // Menü
   else if (gameState == MENU) {
+
+    if (musicCoolDown <= 0) {
+      backgroundMusic.play();
+      musicCoolDown = 200;
+      musicCoolDown -= 1/frameRate;
+    }
+
     background(50, 150, 50);
     button(width/3 * 2, height/5, width/3 - width/30, height/6, "Level Select", 0);
     button(width/3 * 2, height/5 * 2, width/3 - width/30, height/6, "Controls", 1);
@@ -230,12 +251,21 @@ void draw() {
     background(50, 150, 50);
     textSize(height/20);
     fill (#DBD2AC);
-    text ("Press 1-7 to change the Dogs triggerrange for the Sheep: " + DogTriggerUsed, width/10, height/10 * 8,9);
+    text ("Press 1-7 to change the Dogs triggerrange for the Sheep: " + DogTriggerUsed, width/10, height/10 * 8, 9);
   }
 
 
   //Das Spiel
   else if (gameState == GAME) {
+
+    backgroundMusic.stop();
+  
+   /* if (musicCoolDown1 <= 0) {
+      sheepBleat.play();
+      musicCoolDown = 200;
+      musicCoolDown -= 1/frameRate;
+    }*/
+
     timer -= 1/frameRate;
     background(50, 200, 50);
     imageMode(CORNER);
@@ -273,7 +303,9 @@ void draw() {
 
 
     //END Bildschirm
-
+    
+    sheepBleat.stop();
+    
     background (0);
     textSize (120);
     fill(255);
