@@ -32,7 +32,7 @@ class Wolf {
     if (dist(theDog.xposition(), theDog.yposition(), pos.x, pos.y) <= 100 && barked == true ) {
 
 
-      v.set (theDog.xposition() + pos.x, theDog.yposition() + pos.y);
+      v.set (-(theDog.xposition() - pos.x), -(theDog.yposition() - pos.y));
       v.normalize();
       v.mult(1);
     

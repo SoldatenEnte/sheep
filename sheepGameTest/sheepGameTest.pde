@@ -2,6 +2,7 @@ int MENU = 0, GAME = 1, END = 2, GAMEOVER = 3;
 int gameState = MENU;
 int selected = 0;
 boolean barked = false;
+float barkCoolDown = 2;
 
 int hundTrigger1 = 100, hundTrigger2 = 150, hundTrigger3 = 200, hundTrigger4 = 250, hundTrigger5 = 300, hundTrigger6 = 350, hundTrigger7 = 400;
 int DogTriggerUsed = hundTrigger2; //Hund trigger Reichweite für Schaf
@@ -83,13 +84,16 @@ void mouseClicked() {
     gameState = GAME;
   }
   if (gameState == GAME) {
+    if (barkCoolDown <= 0) {
     barked = true;
+    barkCoolDown = 4;
     theDog.bark ();
+    }
   }
 }
 
 void draw() {
-  println(barked);
+  println(barkCoolDown);
   // Menü
   if (gameState == MENU) {
     background(50, 150, 50);

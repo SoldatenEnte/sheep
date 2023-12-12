@@ -7,7 +7,7 @@ class Dog {
   PVector v = new PVector();                      //Bewegungsvektor
   float speed = 5;                                //Geschwindigkeit des Hundes
   float radius = 20;                              //Größe des Hundes
-  float barkCoolDown = 2;
+  float barkTime = 2;
 
 
   Dog() {
@@ -37,11 +37,12 @@ class Dog {
     pos.add(v);
   }
   void draw() {
+    barkCoolDown -= 1/frameRate;
     if (barked){
-      barkCoolDown -= 1/frameRate;
-      if (barkCoolDown <= 0) {
+      barkTime -= 1/frameRate;
+      if (barkTime <= 0) {
         barked = false;
-        barkCoolDown = 2;
+        barkTime = 2;
       }
     }
     //imageMode(CENTER);
