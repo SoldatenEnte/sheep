@@ -5,6 +5,7 @@ int selected = 0;
 float clickCoolDown = 1;
 float musicCoolDown = 0;
 float musicCoolDown1 = 0;
+float introY = 700;
 
 boolean barked = false;
 float barkCoolDown = 2;
@@ -30,17 +31,19 @@ Dog theDog;
 ArrayList <Sheep> sheep;
 ArrayList <Wolf> wolf;
 
+PImage mainArt;
+PImage titleimg;
 PImage ground;
 PImage trees;
 PImage dogimg;
 PImage wolfimg;
 PImage sheepimg;
 
-import processing.sound.*;
-SoundFile wolfBite;
-SoundFile backgroundMusic;
-SoundFile sheepBleat;
-SoundFile dogBark;
+/*import processing.sound.*;
+ SoundFile wolfBite;
+ SoundFile backgroundMusic;
+ SoundFile sheepBleat;
+ SoundFile dogBark;*/
 
 void setup() {
   size(1280, 720);
@@ -58,16 +61,19 @@ void setup() {
   sheep = new ArrayList<Sheep>();
   wolf = new ArrayList<Wolf>();
 
+  mainArt = loadImage("BirkenHirten Main Art.png");
+  titleimg = loadImage("BirkenHirten Main Screen.png");
   ground = loadImage("Ground.jpg");
   trees = loadImage("trees.png");
   dogimg = loadImage("dog.png");
   wolfimg = loadImage("wolf.png");
   sheepimg = loadImage("sheep.png");
 
-  wolfBite = new SoundFile(this, "crunchy-bite.mp3");
-  backgroundMusic = new SoundFile(this, "Carefree.mp3");
-  sheepBleat = new SoundFile(this, "sheepbleat.wav");
-  dogBark = new SoundFile(this, "dog bark.mp3");
+  /*wolfBite = new SoundFile(this, "crunchy-bite.mp3");
+   backgroundMusic = new SoundFile(this, "Carefree.mp3");
+   sheepBleat = new SoundFile(this, "sheepbleat.wav");
+   dogBark = new SoundFile(this, "dog bark.mp3");*/
+   
 }
 
 
@@ -196,36 +202,46 @@ void draw() {
   //intro
   if (gameState == INTRO) {
     background (0);
+    introY -= height/700;
     fill (255);
+    textAlign(LEFT);
     textSize (30);
     text ("Press ENTER to skip...", width/10*7, height/8*7);
+    textAlign(CENTER);
+    textSize(height/36);
+    text( "You are just a humble sheepdog," ,width/2, introY);
+    text( "but one day the shepherd led you and the sheeps" ,width/2, introY + height/25);
+    text( "into a mysterious birch forest." ,width/2, introY  + height/25 * 2);
+    text( "As you reach a clearing the shepherd notices " ,width/2, introY  + height/25 * 3);
+    text( "that some of the sheep are missing and orders you" ,width/2, introY  + height/25 * 4);
+    text( "to herd the remaining sheep on the clearing," ,width/2, introY  + height/25 * 5);
+    text( "while he looks for the missing sheep." ,width/2, introY  + height/25 * 6);
+    text( "Shortly after the Shepherd left," ,width/2, introY  + height/25 * 7);
+    text( "you hear wolfs howling and you know," ,width/2, introY  + height/25 * 8);
+    text( "this task won't be easy" ,width/2, introY + height/25 * 9);
   }
   // Menü
   else if (gameState == MENU) {
+    imageMode(CORNER);
+    image(mainArt, 0, 0, width, height);
+    image(titleimg, width/20, height/20, width/3, height/3);
 
-    if (musicCoolDown <= 0) {
-      backgroundMusic.play();
-      musicCoolDown = 200;
-      musicCoolDown -= 1/frameRate;
-    }
+    /*if (musicCoolDown <= 0) {
+     backgroundMusic.play();
+     musicCoolDown = 200;
+     musicCoolDown -= 1/frameRate;
+     }*/
 
-    background(50, 150, 50);
+
     button(width/3 * 2, height/5, width/3 - width/30, height/6, "Level Select", 0);
     button(width/3 * 2, height/5 * 2, width/3 - width/30, height/6, "Controls", 1);
     button(width/3 * 2, height/5 * 3, width/3 - width/30, height/6, "Credits", 2);
-
-    fill(0);
-    textSize(50);
-    textAlign(CENTER);
-    text("Sheeps of Doom", width/2, height/2);
-    textAlign(LEFT);
-    textSize(20);
-    text("Press 'Enter' to start", width/2, height/2 + height/20);
   }
   //Credits
   else if (gameState == CREDITS) {
     background(50, 150, 50);
     fill(#DBD2AC);
+    textAlign(LEFT);
     textSize(height/10 * 0.8);
     text("Code und Idee: Aaron, Clark, Felix", width/10, height/10);
     text("Art Director: Felix", width/10, height/10 * 2);
@@ -235,6 +251,9 @@ void draw() {
   //Levelauswahl
   else if ( gameState == LEVEL) {
     background(50, 150, 50);
+    imageMode(CORNER);
+    image(mainArt, 0, 0, width, height);
+    image(titleimg, width/20, height/20, width/3, height/3);
     button (width/10 * 8, height/10 * 0.1, width/10 * 1.9, height/10 * 0.9, "Level 1", 0);
     button (width/10 * 8, height/10 * 1.1, width/10 * 1.9, height/10 * 0.9, "Level 2", 1);
     button (width/10 * 8, height/10 * 2.1, width/10 * 1.9, height/10 * 0.9, "Level 3", 2);
@@ -249,6 +268,7 @@ void draw() {
   //CONTROLS Screen
   else if (gameState == CONTROLS) {
     background(50, 150, 50);
+    textAlign(LEFT);
     textSize(height/20);
     fill (#DBD2AC);
     text ("Press 1-7 to change the Dogs triggerrange for the Sheep: " + DogTriggerUsed, width/10, height/10 * 8, 9);
@@ -258,13 +278,13 @@ void draw() {
   //Das Spiel
   else if (gameState == GAME) {
 
-    backgroundMusic.stop();
-  
-   /* if (musicCoolDown1 <= 0) {
-      sheepBleat.play();
-      musicCoolDown = 200;
-      musicCoolDown -= 1/frameRate;
-    }*/
+    /*backgroundMusic.stop();
+     
+    /* if (musicCoolDown1 <= 0) {
+     sheepBleat.play();
+     musicCoolDown = 200;
+     musicCoolDown -= 1/frameRate;
+     }*/
 
     timer -= 1/frameRate;
     background(50, 200, 50);
@@ -280,10 +300,10 @@ void draw() {
     if (levelSelect == 6) Level7.draw();
     if (levelSelect == 7) Level8.draw();
 
-    rotate(0);
     imageMode(CORNER);
     image (trees, 0, 0, width, height);
     //schreibt den Countdown hin
+    textAlign(LEFT);
     textSize(30);
     fill(0);
     text (int(timer), 20, 40);
@@ -303,10 +323,11 @@ void draw() {
 
 
     //END Bildschirm
-    
-    sheepBleat.stop();
-    
+
+    //sheepBleat.stop();
+
     background (0);
+    textAlign(LEFT);
     textSize (120);
     fill(255);
     text ("Score: "+ int(score), width/4, height/2);
