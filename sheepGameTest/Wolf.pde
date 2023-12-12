@@ -29,15 +29,20 @@ class Wolf {
   void move() {
     PVector sheepPos = new PVector();
     float maxDist = 5000;
+    boolean dogChase = false;
 
-    //reaktion Wolf auf bellen
     if (wolfEating == false) {
-      if (dist(theDog.xposition(), theDog.yposition(), pos.x, pos.y) <= 100 && barked == true ) {
 
-
-        v.set (-(theDog.xposition() - pos.x), -(theDog.yposition() - pos.y));
-        v.normalize();
-        v.mult(1);
+      if ( barked == true ) {
+         if (dist(theDog.xposition(), theDog.yposition(), pos.x, pos.y) <= 100) {
+        dogChase = true;
+      }
+        if (dogChase == true) {
+          v.set (-(theDog.xposition() - pos.x), -(theDog.yposition() - pos.y));
+          v.normalize();
+          v.mult(1.5);
+        }
+        dogChase = false;
       } else {
         for (int i = sheepCount; i >= 0; i--) {
           Sheep aSheep = sheep.get(i);
