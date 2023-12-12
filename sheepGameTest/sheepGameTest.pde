@@ -80,8 +80,8 @@ void keyPressed() {
 
     // Controls Bildschirm
   } else if (gameState == CONTROLS) {
-    if (keyCode == ENTER) {
-      gameState = GAME;
+    if (keyCode == ESC) {
+      gameState = MENU;
     }
     //Trigger ändern durch Tastendruck im Menu
     if (key == '1') {
