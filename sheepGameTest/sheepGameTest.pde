@@ -49,22 +49,6 @@ void keyPressed() {
     if (keyCode == ENTER) {
       gameState = LEVEL;
     }
-    //Trigger ändern durch Tastendruck im Menu
-    if (key == '1') {
-      DogTriggerUsed = hundTrigger1;
-    } else if (key == '2') {
-      DogTriggerUsed = hundTrigger2;
-    } else if (key == '3') {
-      DogTriggerUsed = hundTrigger3;
-    } else if (key == '4') {
-      DogTriggerUsed = hundTrigger4;
-    } else if (key == '5') {
-      DogTriggerUsed = hundTrigger5;
-    } else if (key == '6') {
-      DogTriggerUsed = hundTrigger6;
-    } else if (key == '7') {
-      DogTriggerUsed = hundTrigger7;
-    }
   }
   //Levelbildschirm
   else if (gameState == LEVEL) {
@@ -81,6 +65,22 @@ void keyPressed() {
   } else if (gameState == CONTROLS) {
     if (keyCode == ENTER) {
       gameState = GAME;
+    }
+    //Trigger ändern durch Tastendruck im Menu
+    if (key == '1') {
+      DogTriggerUsed = hundTrigger1;
+    } else if (key == '2') {
+      DogTriggerUsed = hundTrigger2;
+    } else if (key == '3') {
+      DogTriggerUsed = hundTrigger3;
+    } else if (key == '4') {
+      DogTriggerUsed = hundTrigger4;
+    } else if (key == '5') {
+      DogTriggerUsed = hundTrigger5;
+    } else if (key == '6') {
+      DogTriggerUsed = hundTrigger6;
+    } else if (key == '7') {
+      DogTriggerUsed = hundTrigger7;
     }
   }
 
@@ -118,7 +118,9 @@ void draw() {
   //intro
   if (gameState == INTRO) {
     background (0);
-  }
+    fill (255);
+    text ("Intro", width/2,height/2);   
+}
   // Menü
   else if (gameState == MENU) {
     background(50, 150, 50);
@@ -128,7 +130,6 @@ void draw() {
     textAlign(LEFT);
     textSize(20);
     text("Press 'Enter' to start", width/2, height/2 + height/20);
-    text ("Press 1-7 to change the Dogs trigger Range for the Sheep: " + DogTriggerUsed, width/4, height/5*4+100);
   }
 
   //Levelauswahl
@@ -141,7 +142,9 @@ void draw() {
   //CONTROLS Screen
   else if (gameState == CONTROLS) {
     background (0);
-  }
+    fill (255);
+    text ("Press 1-7 to change the Dogs triggerrange for the Sheep: " + DogTriggerUsed, width/4, height/5*4+100);  
+}
 
 
   //Das Spiel
