@@ -38,6 +38,7 @@ class Level {
       wolf.remove(i);
     }
     theDog.reset();
+    score = 0;
   }
 
   void draw() {
