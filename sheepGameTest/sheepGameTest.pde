@@ -1,4 +1,4 @@
-int MENU = 0, GAME = 1, END = 2, GAMEOVER = 3, LEVEL = 4, CONTROLS = 5, INTRO = 6;
+int MENU = 0, GAME = 1, END = 2, GAMEOVER = 3, LEVEL = 4, CONTROLS = 5, INTRO = 6, CREDITS = 7;
 int gameState = INTRO;
 int levelSelect = 0;
 int selected = 0;
@@ -67,6 +67,13 @@ void keyPressed() {
       gameState = LEVEL;
     }
   }
+  else if(gameState == CREDITS){
+    if (keyCode == BACKSPACE || keyCode == ENTER) {
+      gameState = MENU;
+    }
+  }
+
+
   //Levelbildschirm
   else if (gameState == LEVEL) {
     if (keyCode == ENTER) {
@@ -86,41 +93,49 @@ void keyPressed() {
         Level7.set();
       } else if (selected == 7) {
         Level8.set();
+      } else if (selected == 8) {
+        gameState = MENU;
       }
-      levelSelect = selected;
-      gameState = GAME;
-    }
-  }
-  // Controls Bildschirm
-  else if (gameState == CONTROLS) {
-    if (keyCode == ENTER || keyCode == BACKSPACE) {
+    } else if (keyCode == BACKSPACE) {
       gameState = MENU;
     }
-    //Trigger ändern durch Tastendruck im Menu
-    else if (key == '1') {
-      DogTriggerUsed = hundTrigger1;
-    } else if (key == '2') {
-      DogTriggerUsed = hundTrigger2;
-    } else if (key == '3') {
-      DogTriggerUsed = hundTrigger3;
-    } else if (key == '4') {
-      DogTriggerUsed = hundTrigger4;
-    } else if (key == '5') {
-      DogTriggerUsed = hundTrigger5;
-    } else if (key == '6') {
-      DogTriggerUsed = hundTrigger6;
-    } else if (key == '7') {
-      DogTriggerUsed = hundTrigger7;
+
+    // Controls Bildschirm
+    else if (gameState == CONTROLS) {
+      if (keyCode == ENTER || keyCode == BACKSPACE) {
+        gameState = MENU;
+      }
+      //Trigger ändern durch Tastendruck im Menu
+      else if (key == '1') {
+        DogTriggerUsed = hundTrigger1;
+      } else if (key == '2') {
+        DogTriggerUsed = hundTrigger2;
+      } else if (key == '3') {
+        DogTriggerUsed = hundTrigger3;
+      } else if (key == '4') {
+        DogTriggerUsed = hundTrigger4;
+      } else if (key == '5') {
+        DogTriggerUsed = hundTrigger5;
+      } else if (key == '6') {
+        DogTriggerUsed = hundTrigger6;
+      } else if (key == '7') {
+        DogTriggerUsed = hundTrigger7;
+      }
+    } else if (gameState == END && keyCode == ENTER) {
+      if (levelSelect == 0) Level1.reset();
+      if (levelSelect == 1) Level2.reset();
+      if (levelSelect == 2) Level3.reset();
+      if (levelSelect == 3) Level4.reset();
+      if (levelSelect == 4) Level5.reset();
+      if (levelSelect == 5) Level6.reset();
+      if (levelSelect == 6) Level7.reset();
+      if (levelSelect == 7) Level8.reset();
+      gameState = MENU;
+    } else if (gameState == GAMEOVER && keyCode == ENTER) {
+      gameState = END;
     }
-  } else if (gameState == END && keyCode == ENTER) {
-    if (levelSelect == 0) Level1.reset();
-    if (levelSelect == 1) Level2.reset();
-    gameState = MENU;
-  } else if (gameState == GAMEOVER && keyCode == ENTER) {
-    gameState = END;
   }
 }
-
 
 void mousePressed() {
 
@@ -129,6 +144,8 @@ void mousePressed() {
       gameState = LEVEL;
     } else if (selected == 1) {
       gameState = CONTROLS;
+    } else if (selected == 2) {
+      gameState = CREDITS;
     }
   } else if (gameState == LEVEL) {
     if (selected == 0) {
@@ -147,9 +164,9 @@ void mousePressed() {
       Level7.set();
     } else if (selected == 7) {
       Level8.set();
+    } else if (selected == 8) {
+      gameState = MENU;
     }
-    levelSelect = selected;
-    gameState = GAME;
   } else if (gameState == GAME) {
     if (barkCoolDown <= 0) {
       barked = true;
@@ -185,18 +202,28 @@ void draw() {
     textSize(20);
     text("Press 'Enter' to start", width/2, height/2 + height/20);
   }
+  //Credits
+  else if (gameState == CREDITS) {
+    background(50, 150, 50);
+    fill(#DBD2AC);
+    textSize(height/10 * 0.8);
+    text("Code und Idee: Aaron, Clark, Felix", width/10, height/10);
+    text("Art Director: Felix", width/10, height/10 * 2);
+    text("Sound Director: Clark", width/10, height/10 * 3);
+  }
 
   //Levelauswahl
   else if ( gameState == LEVEL) {
     background(50, 150, 50);
-    button (width/10 * 9, height/10 * 0.1, width/10 * 0.9, height/10 * 0.9, "Level 1", 0);
-    button (width/10 * 9, height/10 * 1.1, width/10 * 0.9, height/10 * 0.9, "Level 2", 1);
-    button (width/10 * 9, height/10 * 2.1, width/10 * 0.9, height/10 * 0.9, "Level 3", 2);
-    button (width/10 * 9, height/10 * 3.1, width/10 * 0.9, height/10 * 0.9, "Level 4", 3);
-    button (width/10 * 9, height/10 * 4.1, width/10 * 0.9, height/10 * 0.9, "Level 5", 4);
-    button (width/10 * 9, height/10 * 5.1, width/10 * 0.9, height/10 * 0.9, "Level 6", 5);
-    button (width/10 * 9, height/10 * 6.1, width/10 * 0.9, height/10 * 0.9, "Level 7", 6);
-    button (width/10 * 9, height/10 * 7.1, width/10 * 0.9, height/10 * 0.9, "Level 8", 7);
+    button (width/10 * 8, height/10 * 0.1, width/10 * 1.9, height/10 * 0.9, "Level 1", 0);
+    button (width/10 * 8, height/10 * 1.1, width/10 * 1.9, height/10 * 0.9, "Level 2", 1);
+    button (width/10 * 8, height/10 * 2.1, width/10 * 1.9, height/10 * 0.9, "Level 3", 2);
+    button (width/10 * 8, height/10 * 3.1, width/10 * 1.9, height/10 * 0.9, "Level 4", 3);
+    button (width/10 * 8, height/10 * 4.1, width/10 * 1.9, height/10 * 0.9, "Level 5", 4);
+    button (width/10 * 8, height/10 * 5.1, width/10 * 1.9, height/10 * 0.9, "Level 6", 5);
+    button (width/10 * 8, height/10 * 6.1, width/10 * 1.9, height/10 * 0.9, "Level 7", 6);
+    button (width/10 * 8, height/10 * 7.1, width/10 * 1.9, height/10 * 0.9, "Level 8", 7);
+    button (width/10 * 8, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 8);
   }
 
   //CONTROLS Screen

@@ -15,7 +15,7 @@ class Level {
 
   void set() {
     //set() setzt die timer und die Anzahl von Wölfen und Schafen auf die in Level() angegebenen Werte
-    
+
     timer = levelTimer;
     sheepCount = sheepStart;
     wolfCount = wolfStart;
@@ -27,6 +27,8 @@ class Level {
     for (int i = sheepStart; i>=0; i--) {
       sheep.add(new Sheep());
     }
+    levelSelect = selected;
+    gameState = GAME;
   }
 
   void reset() {

@@ -18,15 +18,20 @@ void kill() {
 }
 
 void button (float x, float y, float w, float h, String a, int b) {
+  textAlign(CENTER, CENTER);
   if (b != selected) {
-    fill(255);
+    fill(#DBD2AC);
+    textSize(30);
+    noStroke();
+    rect(x, y, w, h, 30);
+    fill(0);
   } else {
-    fill(#E39EBB);
+    fill(#7e5a34);
+    textSize(50);
+    noStroke();
+    rect(x, y, w, h, 30);
+    fill(#DBD2AC);
   }
-  noStroke();
-  rect(x, y, w, h);
-  fill(0);
-  textAlign(CENTER);
   text( a, x + w/2, y + h/2);
   if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
     selected = b;
