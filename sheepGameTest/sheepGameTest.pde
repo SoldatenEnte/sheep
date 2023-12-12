@@ -1,7 +1,6 @@
 int MENU = 0, GAME = 1, END = 2, GAMEOVER = 3;
 int gameState = MENU;
 int selected = 0;
-int time = 5;
 boolean barked = false;
 
 int hundTrigger1 = 100, hundTrigger2 = 150, hundTrigger3 = 200, hundTrigger4 = 250, hundTrigger5 = 300, hundTrigger6 = 350, hundTrigger7 = 400;
@@ -90,6 +89,7 @@ void mouseClicked() {
 }
 
 void draw() {
+  println(barked);
   // Menü
   if (gameState == MENU) {
     background(50, 150, 50);

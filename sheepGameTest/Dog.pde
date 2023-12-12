@@ -7,6 +7,7 @@ class Dog {
   PVector v = new PVector();                      //Bewegungsvektor
   float speed = 5;                                //Geschwindigkeit des Hundes
   float radius = 20;                              //Größe des Hundes
+  float barkCoolDown = 2;
 
 
   Dog() {
@@ -36,6 +37,13 @@ class Dog {
     pos.add(v);
   }
   void draw() {
+    if (barked){
+      barkCoolDown -= 1/frameRate;
+      if (barkCoolDown <= 0) {
+        barked = false;
+        barkCoolDown = 2;
+      }
+    }
     //imageMode(CENTER);
     //image(dogimg, pos.x, pos.y, 3*radius, 3*radius);
     pushMatrix();
@@ -49,16 +57,10 @@ class Dog {
 // Hundbellen Darstellung und Timer
   void bark () {
      if (barked == true) {
-
+      
       textSize (50);
       fill (255, 0, 0);
       text ("!", pos.x+10, pos.y+10);
-
-      time -= 1/frameRate;
-      if (time <= 0) {
-        barked = false;
-        time = 5;
-      }
     }
   }
 }
