@@ -134,7 +134,7 @@ void draw() {
     if (timer<=0) {
       gameState = END;
     }
-    if (sheepCount <= 0) {
+    if (sheepCount < 0) {
       gameState = GAMEOVER;
     }
   } else if (gameState == END) {
@@ -152,13 +152,15 @@ void draw() {
   } else if (gameState == GAMEOVER) {
 
     background (0);
+    
+    textAlign (CENTER);
     textSize (120);
     fill (255, 0, 0);
     text ("GAME OVER", width/2, height/3);
     textSize (40);
     fill (#E3E3E3);
-    textAlign (CENTER);
     text ("You've lost all the Farmers Sheep. Shame on you!", width/2, height/3*2);
     text ("Press ENTER for Score and Menu.", width/2, height/4*3);
-  }
+    textAlign (LEFT);  
+}
 }
