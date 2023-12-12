@@ -1,6 +1,8 @@
-int MENU = 0, GAME = 1, END = 2;
+int MENU = 0, GAME = 1, END = 2, GAMEOVER = 3;
 int gameState = MENU;
 int selected = 0;
+int time = 5;
+boolean barked = false;
 
 int hundTrigger1 = 100, hundTrigger2 = 150, hundTrigger3 = 200, hundTrigger4 = 250, hundTrigger5 = 300, hundTrigger6 = 350, hundTrigger7 = 400;
 int DogTriggerUsed = hundTrigger2; //Hund trigger Reichweite für Schaf
@@ -23,13 +25,13 @@ PImage sheepimg;
 
 void setup() {
   size(1280, 720);
-  
+
   Level1 = new Level(0, 10, 10);
   Level2 = new Level(1, 10, 20);
   theDog = new Dog();
   sheep = new ArrayList<Sheep>();
   wolf = new ArrayList<Wolf>();
-  
+
   ground = loadImage("Ground.jpg");
   trees = loadImage("trees.png");
   dogimg = loadImage("dog.png");
@@ -66,13 +68,13 @@ void keyPressed() {
       DogTriggerUsed = hundTrigger7;
     }
   } else if (gameState == END && keyCode == ENTER) {
-    if(selected == 0) Level1.reset();
+    if (selected == 0) Level1.reset();
     if (selected == 1) Level2.reset();
     gameState = MENU;
   }
 }
 
-void mousePressed() {
+void mouseClicked() {
   if (gameState == MENU) {
     if (selected == 0) {
       Level1.set();                                                      //SET!!!
@@ -81,8 +83,11 @@ void mousePressed() {
     }
     gameState = GAME;
   }
+  if (gameState == GAME) {
+    barked = true;
+    theDog.bark ();
+  }
 }
-
 
 void draw() {
   // Menü
@@ -107,10 +112,10 @@ void draw() {
     background(50, 200, 50);
     imageMode(CORNER);
     image (ground, 0, 0, width, height);
-    
-    if(selected == 0) Level1.draw();
+
+    if (selected == 0) Level1.draw();
     if (selected == 1) Level2.draw();
-    
+
     rotate(0);
     imageMode(CORNER);
     image (trees, 0, 0, width, height);
@@ -124,7 +129,7 @@ void draw() {
     }
   } else if (gameState == END) {
     //END Bildschirm
-    
+
     //Score Berechnung
     int Score = sheepCount*100 ;
     background (0);

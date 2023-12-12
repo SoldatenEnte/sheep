@@ -27,19 +27,28 @@ class Wolf {
   void move() {
     PVector sheepPos = new PVector();
     float maxDist = 5000;
-    for (int i = sheepCount; i >= 0; i--) {
-      Sheep aSheep = sheep.get(i);
-      if (dist(aSheep.xposition (), aSheep.yposition (), pos.x, pos.y) < maxDist) {
-        maxDist = dist(aSheep.xposition (), aSheep.yposition (), pos.x, pos.y);
-        sheepPos.set(aSheep.xposition (), aSheep.yposition ());
+
+    //reaktion Wolf auf bellen
+    if ((dist(theDog.xposition(), theDog.yposition(), pos.x, pos.y) <= 100) && barked == true ) {
+
+
+      v.set (theDog.xposition() + pos.x, theDog.yposition() + pos.y);
+      v.normalize();
+      v.mult(1);
+    
+  } else {
+      for (int i = sheepCount; i >= 0; i--) {
+        Sheep aSheep = sheep.get(i);
+        if (dist(aSheep.xposition (), aSheep.yposition (), pos.x, pos.y) < maxDist) {
+          maxDist = dist(aSheep.xposition (), aSheep.yposition (), pos.x, pos.y);
+          sheepPos.set(aSheep.xposition (), aSheep.yposition ());
+        }
       }
-      //reaktion Wolf auf bellen
-      if ((dist(TheDog.xposition(), TheDog.yposition(),pos.x, pos.y) < 100) && barked = true) {
-        
+      v.set (sheepPos.x - pos.x, sheepPos.y - pos.y);
+      v.normalize();
+      v.mult(1);
     }
-    v.set (sheepPos.x - pos.x, sheepPos.y - pos.y);
-    v.normalize();
-    v.mult(1);
+
     pos.add(v);
   }
 

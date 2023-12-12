@@ -1,8 +1,6 @@
 /*Die Klasse für den Hund/Spielercharakter
  */
 
-boolean barked = false;
-int time = 5;
 
 class Dog {
   PVector pos = new PVector(0, 0);                //Positionsvektor
@@ -48,10 +46,9 @@ class Dog {
     popMatrix();
   }
 
-// HUndbellen Darstellung und Timer
-  void mouseClicked() {
-    if (barked == false) {
-      barked = true;
+// Hundbellen Darstellung und Timer
+  void bark () {
+     if (barked == true) {
 
       textSize (50);
       fill (255, 0, 0);
