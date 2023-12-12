@@ -29,12 +29,14 @@ class Dog {
   }
 
   void move() {
+    if  (dist(mouseX, mouseY, pos.x, pos.y) > 5) {
     //berechnet Richtung des Bewegungsvektors und normalisiert
     v.set ((mouseX - pos.x), (mouseY - pos.y));
     v.normalize();
     v.mult(speed);
     //verrechent Position und Bewegung
     pos.add(v);
+  }
   }
   void draw() {
     barkCoolDown -= 1/frameRate;
