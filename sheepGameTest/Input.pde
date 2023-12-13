@@ -75,6 +75,14 @@ void mousePressed() {
     } else if (selected == 2) {
       loadState(GameState.CREDITS);
     }
+  } else if (currentState == GameState.CREDITS) {
+    if (selected == 0) {
+      loadState(GameState.MENU);
+    }
+  } else if (currentState == GameState.CONTROLS) {
+    if (selected == 0) {
+      loadState(GameState.MENU);
+    }
   } else if (currentState == GameState.LEVEL) {
     if (selected == 0) {
       Level1.set();

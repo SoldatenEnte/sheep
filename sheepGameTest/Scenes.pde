@@ -10,8 +10,7 @@ void introScene() {
   textSize(height/36);
   textLeading(height/36*1.6);
   text("You are just a humble sheepdog,\nbut one day the shepherd led you and the sheep\ninto a mysterious birch forest.\nAs you reach a clearing the shepherd notices\nthat some of the sheep are missing and orders you\nto herd the remaining sheep on the clearing,\nwhile he looks for the missing sheep.\nShortly after the Shepherd left,\nyou hear wolfs howling and you know,\nthis task won't be easy", width/2, introY);
-  if (introY <= -450)
-  {
+  if (introY <= -450){
     loadState(GameState.MENU);
   }
 }
@@ -23,22 +22,23 @@ void menuScene() {
 
 
   button(width/3 * 2, height/5, width/3 - width/30, height/6, "Level Select", 0);
-  button(width/3 * 2, height/5 * 2, width/3 - width/30, height/6, "Controls", 1);
+  button(width/3 * 2, height/5 * 2, width/3 - width/30, height/6, "How To Play", 1);
   button(width/3 * 2, height/5 * 3, width/3 - width/30, height/6, "Credits", 2);
 }
 
 void creditScene() {
-  background(50, 150, 50);
+  background(27, 83, 27);
   fill(#DBD2AC);
   textAlign(LEFT);
   textSize(height/10 * 0.8);
-  text("Code und Idee: Aaron, Clark, Felix", width/10, height/10);
-  text("Art Director: Felix", width/10, height/10 * 2);
-  text("Sound Director: Clark", width/10, height/10 * 3);
+  text("Code und Idee: Aaron, Clark, Felix", width/10 * 0.1, height/10);
+  text("Art Director: Felix", width/10 * 0.1, height/10 * 2);
+  text("Sound Director: Clark", width/10 * 0.1, height/10 * 3);
+  button (width/10 * 8, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
 }
 
 void levelScene() {
-  background(50, 150, 50);
+  background(27, 83, 27);
   imageMode(CORNER);
   image(mainArt, 0, 0, width, height);
   image(titleimg, width/20, height/20, width/3, height/3);
@@ -54,11 +54,12 @@ void levelScene() {
 }
 
 void controlsScene() {
-  background(50, 150, 50);
+  background(27, 83, 27);
   textAlign(LEFT);
   textSize(height/20);
   fill (#DBD2AC);
-  text ("Press 1-7 to change the Dogs triggerrange for the Sheep: " + dogTrigger, width/10, height/10 * 8, 9);
+  text ("Try to keep the sheep inside the window while saving them from the wolves \nThe sheep only run from the dog \nTo Control the Dog use the mouse, the Dog follows the mouse. \nPress the mouse button to bark. barking scares the wolves off. \n \nYou can change in which distance \nthe sheep will start running from the dog here: \n    Press 1-7 to change the Dogs triggerrange for the Sheep: " + dogTrigger, width/10 * 0.1, height/10 , 9);
+  button (width/10 * 8, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
 }
 
 void gameScene() {
@@ -86,6 +87,7 @@ void gameScene() {
   //Scoreberechnung
   score = score + sheep.size()/frameRate;
   //beendet das Game, wenn der Timer läuft
+
   if (timer<=0) {
     loadState(GameState.END);
   }
