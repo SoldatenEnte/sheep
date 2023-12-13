@@ -35,6 +35,8 @@ void creditScene() {
   text("Art Director: Felix", width/10 * 0.1, height/10 * 2);
   text("Sound Director: Clark", width/10 * 0.1, height/10 * 3);
   text("Debugging: Aaron", width/10 * 0.1, height/10 * 4);
+  text ("All Sounds used, are free to use Sounds from Pixabay", width/10*0.1, height/10*5);
+  text ("Royalty Free Music from Kevin Macleod - Carefree", width/10*0.1, height/10*6);
   button (width/10 * 8, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
 }
 
