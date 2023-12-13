@@ -37,7 +37,7 @@ class Wolf {
         if (dogChase == true) {
           v.set (-(theDog.pos.x - pos.x), -(theDog.pos.y - pos.y));
           v.normalize();
-          v.mult(1.5);
+          v.mult(speed * 1.5);
         }
         dogChase = false;
       } else {

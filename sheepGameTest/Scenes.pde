@@ -115,7 +115,7 @@ void gameoverScene() {
   text ("GAME OVER", width/2, height/3);
   textSize (40*vw);
   fill (#E3E3E3);
-  text ("You've lost all the Farmers Sheep. Shame on you!", width/2, height/3*2);
+  text ("You've lost all the Shepherds Sheep. Shame on you!", width/2, height/3*2);
   text ("Press ENTER for Score and Menu.", width/2, height/4*3);
   textAlign (LEFT);
 }
