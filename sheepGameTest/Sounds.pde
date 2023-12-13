@@ -7,7 +7,7 @@ SoundFile dogBark;
 
 void loadSounds() {
   wolfBite = new SoundFile(this, "crunchy-bite.mp3");
-  backgroundMusic = new SoundFile(this, "Carefree.mp3");
+  backgroundMusic = new SoundFile(this, "The Forest and the Trees.mp3");
   sheepBleat = new SoundFile(this, "sheepbleat.wav");
   dogBark = new SoundFile(this, "dog bark.mp3");
 }
