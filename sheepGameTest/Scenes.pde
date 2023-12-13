@@ -28,19 +28,19 @@ void menuScene() {
 
 void creditScene() {
   background(27, 83, 27);
-  fill (#B7AA92);
-  rect (0, 0, width/10, height);
-  rect (width/10*9, 0, width, height);
+  imageMode(CORNER);
+  image (ground, 0, 0, width, height);
+  image (trees, 0, 0, width, height);
   fill(#DBD2AC);
   textAlign(LEFT);
-  textSize(height/10 * 0.5);
+  textSize(height/20);
   text("Code and Idea: Aaron, Clark, Felix", width/10 * 2, height/10);
   text("Art Director: Felix", width/10 * 2, height/10 * 2);
   text("Sound Director: Clark", width/10 * 2, height/10 * 3);
   text("Debugging: Aaron", width/10 * 2, height/10 * 4);
   text ("All Sounds used, are free to use Sounds from Pixabay", width/10*2, height/10*5);
-  text ("Royalty Free Music from Kevin Macleod - Carefree", width/10*2, height/10*6);
-  button (width/10 * 6.5, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
+  text ("Royalty Free Music from Kevin Macleod - \nThe Forest And The Trees", width/10*2, height/10*6);
+  button (width/10 * 8, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
 }
 
 void levelScene() {
@@ -61,10 +61,13 @@ void levelScene() {
 
 void controlsScene() {
   background(27, 83, 27);
+  imageMode(CORNER);
+  image (ground, 0, 0, width, height);
+  image (trees, 0, 0, width, height);
   textAlign(LEFT);
   textSize(height/20);
   fill (#DBD2AC);
-  text ("Try to keep the sheep inside the window while saving them from the wolves. \nThe sheep only run from the dog. \nTo Control the dog use the mouse, the dog follows the mouse. \nPress the mouse button to bark. Barking scares the wolves off. \n \nYou can change in which distance \nthe sheep will start running from the dog here: \n    Press 1-7 to change the dogs triggerrange for the sheep: " + dogTrigger, width/10 * 0.1, height/10, 9);
+  text ("Try to keep the sheep inside the window \nwhile saving them from the wolves. \nThe sheep only run from the dog. \n\nTo Control the dog use the mouse, \nthe dog follows the mouse. \n\nPress the mouse button to bark. \nBarking scares the wolves off. \n \nYou can change in which distance \nthe sheep will start running from the dog here: \nPress 1-7 to change the dogs triggerrange \nfor the sheep: " + dogTrigger, width/10 * 2, height/10, 9);
   button (width/10 * 8, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
 }
 
