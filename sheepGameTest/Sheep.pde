@@ -4,7 +4,7 @@ class Sheep {
   PVector antiCol = new PVector();
   float radius = 30*vw;                                                //Größe des Schafes
   boolean dogChase = true;
-  float speed = 2*vw;
+  float speed = (1.3*vw)  * 60/frameRate;
 
   void move() {
     //berechnet Richtung und normalisiert
@@ -29,7 +29,7 @@ class Sheep {
     if (dogChase) {
       v.set (random(-10*vw, 10*vw), random(-10*vw, 10*vw));
       v.normalize();
-      v.mult(0.3);
+      v.mult(speed * 0.2);
     }
     dogChase = false;
   }

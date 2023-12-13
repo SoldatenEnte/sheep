@@ -5,7 +5,7 @@ class Wolf {
   float radius = 20*vw;                           //Größe des Wolfs
   boolean wolfEating = false;
   float eatCoolDown = 1;
-  float speed = 1*vw;
+  float speed = (1*vw) * 60/frameRate;
 
   Wolf (float x, float y) {
     pos.set(x, y);

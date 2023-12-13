@@ -5,7 +5,7 @@
 class Dog {
   PVector pos = new PVector(0, 0);                //Positionsvektor
   PVector v = new PVector();                      //Bewegungsvektor
-  float speed = 5*vw;                             //Geschwindigkeit des Hundes
+  float speed = (5*vw) * 60/frameRate;                             //Geschwindigkeit des Hundes
   float radius = 20*vw;                           //Größe des Hundes
   float barkTime = 2;
 

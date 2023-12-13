@@ -56,6 +56,7 @@ void setupLevels() {
 }
 
 void draw() {
+  println(frameRate);
   clickCoolDown -= 1/frameRate;
 
   switch(currentState) {
