@@ -10,7 +10,7 @@ void introScene() {
   textSize(height/36);
   textLeading(height/36*1.6);
   text("You are just a humble sheepdog,\nbut one day the shepherd led you and the sheep\ninto a mysterious birch forest.\nAs you reach a clearing the shepherd notices\nthat some of the sheep are missing and orders you\nto herd the remaining sheep on the clearing,\nwhile he looks for the missing sheep.\nShortly after the Shepherd left,\nyou hear wolves howling and you know,\nthis task won't be easy", width/2, introY);
-  if (introY <= -450){
+  if (introY <= -450) {
     loadState(GameState.MENU);
   }
 }
@@ -28,16 +28,19 @@ void menuScene() {
 
 void creditScene() {
   background(27, 83, 27);
+  fill (#B7AA92);
+  rect (0, 0, width/10, height);
+  rect (width/10*9, 0, width, height);
   fill(#DBD2AC);
   textAlign(LEFT);
-  textSize(height/10 * 0.8);
-  text("Code and Idea: Aaron, Clark, Felix", width/10 * 0.1, height/10);
-  text("Art Director: Felix", width/10 * 0.1, height/10 * 2);
-  text("Sound Director: Clark", width/10 * 0.1, height/10 * 3);
-  text("Debugging: Aaron", width/10 * 0.1, height/10 * 4);
-  text ("All Sounds used, are free to use Sounds from Pixabay", width/10*0.1, height/10*5);
-  text ("Royalty Free Music from Kevin Macleod - Carefree", width/10*0.1, height/10*6);
-  button (width/10 * 8, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
+  textSize(height/10 * 0.5);
+  text("Code and Idea: Aaron, Clark, Felix", width/10 * 2, height/10);
+  text("Art Director: Felix", width/10 * 2, height/10 * 2);
+  text("Sound Director: Clark", width/10 * 2, height/10 * 3);
+  text("Debugging: Aaron", width/10 * 2, height/10 * 4);
+  text ("All Sounds used, are free to use Sounds from Pixabay", width/10*2, height/10*5);
+  text ("Royalty Free Music from Kevin Macleod - Carefree", width/10*2, height/10*6);
+  button (width/10 * 6.5, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
 }
 
 void levelScene() {
@@ -61,7 +64,7 @@ void controlsScene() {
   textAlign(LEFT);
   textSize(height/20);
   fill (#DBD2AC);
-  text ("Try to keep the sheep inside the window while saving them from the wolves. \nThe sheep only run from the dog. \nTo Control the dog use the mouse, the dog follows the mouse. \nPress the mouse button to bark. Barking scares the wolves off. \n \nYou can change in which distance \nthe sheep will start running from the dog here: \n    Press 1-7 to change the dogs triggerrange for the sheep: " + dogTrigger, width/10 * 0.1, height/10 , 9);
+  text ("Try to keep the sheep inside the window while saving them from the wolves. \nThe sheep only run from the dog. \nTo Control the dog use the mouse, the dog follows the mouse. \nPress the mouse button to bark. Barking scares the wolves off. \n \nYou can change in which distance \nthe sheep will start running from the dog here: \n    Press 1-7 to change the dogs triggerrange for the sheep: " + dogTrigger, width/10 * 0.1, height/10, 9);
   button (width/10 * 8, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
 }
 
