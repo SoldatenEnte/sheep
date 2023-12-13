@@ -9,7 +9,7 @@ void introScene() {
   textAlign(CENTER);
   textSize(height/36);
   textLeading(height/36*1.6);
-  text("You are just a humble sheepdog,\nbut one day the shepherd led you and the sheep\ninto a mysterious birch forest.\nAs you reach a clearing the shepherd notices\nthat some of the sheep are missing and orders you\nto herd the remaining sheep on the clearing,\nwhile he looks for the missing sheep.\nShortly after the Shepherd left,\nyou hear wolfs howling and you know,\nthis task won't be easy", width/2, introY);
+  text("You are just a humble sheepdog,\nbut one day the shepherd led you and the sheep\ninto a mysterious birch forest.\nAs you reach a clearing the shepherd notices\nthat some of the sheep are missing and orders you\nto herd the remaining sheep on the clearing,\nwhile he looks for the missing sheep.\nShortly after the Shepherd left,\nyou hear wolves howling and you know,\nthis task won't be easy", width/2, introY);
   if (introY <= -450){
     loadState(GameState.MENU);
   }
@@ -31,9 +31,10 @@ void creditScene() {
   fill(#DBD2AC);
   textAlign(LEFT);
   textSize(height/10 * 0.8);
-  text("Code und Idee: Aaron, Clark, Felix", width/10 * 0.1, height/10);
+  text("Code and Idea: Aaron, Clark, Felix", width/10 * 0.1, height/10);
   text("Art Director: Felix", width/10 * 0.1, height/10 * 2);
   text("Sound Director: Clark", width/10 * 0.1, height/10 * 3);
+  text("Debugging: Aaron", width/10 * 0.1, height/10 * 4);
   button (width/10 * 8, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
 }
 
@@ -58,7 +59,7 @@ void controlsScene() {
   textAlign(LEFT);
   textSize(height/20);
   fill (#DBD2AC);
-  text ("Try to keep the sheep inside the window while saving them from the wolves \nThe sheep only run from the dog \nTo Control the Dog use the mouse, the Dog follows the mouse. \nPress the mouse button to bark. barking scares the wolves off. \n \nYou can change in which distance \nthe sheep will start running from the dog here: \n    Press 1-7 to change the Dogs triggerrange for the Sheep: " + dogTrigger, width/10 * 0.1, height/10 , 9);
+  text ("Try to keep the sheep inside the window while saving them from the wolves. \nThe sheep only run from the dog. \nTo Control the dog use the mouse, the dog follows the mouse. \nPress the mouse button to bark. Barking scares the wolves off. \n \nYou can change in which distance \nthe sheep will start running from the dog here: \n    Press 1-7 to change the dogs triggerrange for the sheep: " + dogTrigger, width/10 * 0.1, height/10 , 9);
   button (width/10 * 8, height/10 * 8.1, width/10 * 1.9, height/10 * 0.9, "BACK", 0);
 }
 
@@ -115,7 +116,7 @@ void gameoverScene() {
   text ("GAME OVER", width/2, height/3);
   textSize (40*vw);
   fill (#E3E3E3);
-  text ("You've lost all the Shepherds Sheep. Shame on you!", width/2, height/3*2);
-  text ("Press ENTER for Score and Menu.", width/2, height/4*3);
+  text ("You've lost all the Shepherds sheep. Shame on you!", width/2, height/3*2);
+  text ("Press ENTER for your score.", width/2, height/4*3);
   textAlign (LEFT);
 }
